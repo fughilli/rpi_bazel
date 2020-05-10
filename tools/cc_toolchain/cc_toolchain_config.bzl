@@ -26,7 +26,6 @@ load(
     "tool_path",
     "variable_with_value",
 )
-
 load(
     "@bazel_tools//tools/build_defs/cc:action_names.bzl",
     "ASSEMBLE_ACTION_NAME",
@@ -375,13 +374,17 @@ def _impl(ctx):
                 actions = all_compile_actions,
                 flag_groups = [flag_group(flags = [
                     "-nostdinc++",
-                    "-isystem", "external/org_llvm_libcxx/include",
-                    "-isystem", "external/org_llvm_libcxxabi/include",
+                    "-isystem",
+                    "external/org_llvm_libcxx/include",
+                    "-isystem",
+                    "external/org_llvm_libcxxabi/include",
                 ])],
             ),
             flag_set(
                 actions = all_link_actions,
                 flag_groups = [flag_group(flags = [
+                    "-Lexternal/org_llvm_libcxx/lib",
+                    "-Lexternal/org_llvm_libcxxabi/lib",
                     "-lm",
                     "-lpthread",
                     "-ldl",
@@ -464,7 +467,7 @@ def _impl(ctx):
         flag_sets = [
             flag_set(
                 actions = all_link_actions,
-                flag_groups = [flag_group(flags= [
+                flag_groups = [flag_group(flags = [
                     "-fuse-ld=lld",
                 ])],
             ),
@@ -485,8 +488,8 @@ def _impl(ctx):
             "no-canonical-prefixes",
             "linker-bin-path",
             "lld",
-        ] + (["armeabihf", "rpi_sysroot"]
-             if "armeabihf" in ctx.attr.extra_features else [])
+            "user_link_flags",
+        ] + (["armeabihf", "rpi_sysroot"] if "armeabihf" in ctx.attr.extra_features else []),
     )
 
     features = [
@@ -558,7 +561,7 @@ def _impl(ctx):
     ]
 
 cc_toolchain_config = rule(
-        implementation = _impl,
+    implementation = _impl,
     attrs = {
         "cpu": attr.string(mandatory = True, values = ["k8", "armeabihf"]),
         "builtin_include_directories": attr.string_list(),

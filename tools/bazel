@@ -21,7 +21,7 @@ import subprocess
 import sys
 import tempfile
 
-SCRIPT_PATH = os.path.basename(__file__)
+SCRIPT_PATH = os.path.abspath('.')
 
 def find_workspace_dir():
     path = SCRIPT_PATH

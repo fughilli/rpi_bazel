@@ -54,6 +54,8 @@ def main():
         '/usr/include/netinet',
         '/usr/include/rpc',
         '/usr/include/X11',
+        '/opt/vc/include',
+        '/opt/vc/lib',
     ]
 
     # And these individual files.
@@ -92,6 +94,7 @@ def main():
         'libutil.a',
         'libresolv.a',
         'libresolv.so',
+        'libxdo.so',
     ]]
 
     usr_include_file_sources = ['/usr/include/{}'.format(x) for x in [
@@ -117,7 +120,6 @@ def main():
         'home',
         'lost+found',
         'media',
-        'opt',
         'proc',
         'root',
         'run',
