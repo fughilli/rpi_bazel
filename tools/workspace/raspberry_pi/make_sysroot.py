@@ -58,6 +58,11 @@ def main():
         '/usr/include/netinet',
         '/usr/include/rpc',
         '/usr/include/X11',
+        '/usr/include/SDL2',
+        '/usr/include/libprojectM',
+        '/usr/include/alsa',
+        '/usr/include/pulse',
+        '/usr/include/sys',
         '/opt/vc/include',
         '/opt/vc/lib',
     ]
@@ -99,7 +104,20 @@ def main():
         'libresolv.a',
         'libresolv.so',
         'libxdo.so',
-    ]]
+        'libSDL2.a',
+        'libSDL2_test.a',
+        'libSDL2main.a',
+        'libasound.so',
+        'libpulse.so',
+        'libpulse-simple.so',
+        'libpulse-mainloop-glib.so',
+        'libX*',
+        'libsnd*',
+        'libwayland*',
+        'libxkb*',
+    ]] + [
+        '/usr/lib/libprojectM.so',
+    ]
 
     usr_include_file_sources = ['/usr/include/{}'.format(x) for x in [
         '*.h',
