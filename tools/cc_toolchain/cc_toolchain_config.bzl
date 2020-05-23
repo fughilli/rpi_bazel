@@ -452,12 +452,12 @@ def _impl(ctx):
         ],
     )
 
-    cpp17_feature = feature(
-        name = "c++17",
+    cpp14_feature = feature(
+        name = "c++14",
         flag_sets = [
             flag_set(
                 actions = [ACTION_NAMES.cpp_compile],
-                flag_groups = [flag_group(flags = ["-std=c++17"])],
+                flag_groups = [flag_group(flags = ["-std=c++14"])],
             ),
         ],
     )
@@ -478,7 +478,7 @@ def _impl(ctx):
         name = "common",
         implies = [
             "stdlib",
-            "c++17",
+            "c++14",
             "determinism",
             "alwayslink",
             "hardening",
@@ -493,7 +493,9 @@ def _impl(ctx):
     )
 
     features = [
-        cpp17_feature,
+        # TODO: Enable C++17 (libprojectM is not compatible with C++17 on
+        # account of using std::auto_ptr).
+        cpp14_feature,
         stdlib_feature,
         determinism_feature,
         alwayslink_feature,
