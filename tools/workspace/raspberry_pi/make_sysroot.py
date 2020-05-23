@@ -20,7 +20,9 @@ raspberry pi.
 
 import argparse
 import datetime
+import os
 import subprocess
+import sys
 import tempfile
 
 
@@ -33,6 +35,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--user', '-u', help='username', default='pi')
     parser.add_argument('--target', default='arm-linux-gnueabihf')
+    parser.add_argument(
+        '--update-old', help='Old archive name to update from the target')
     parser.add_argument('host', help='IP to use')
     args = parser.parse_args()
 
@@ -134,6 +138,11 @@ def main():
 
     print(temp_dir)
 
+    if args.update_old:
+        if not os.path.exists(args.update_old):
+            raise Exception('Specified archive to update does not exist')
+        call(['tar -xf {} -C {}'.format(args.update_old, temp_dir)], shell=True)
+
     call([
         'rsync',
         '-vrzLR',
@@ -143,8 +152,8 @@ def main():
         '--exclude=cc1plus',
         '--exclude=lto-wrapper',
         '--exclude=lto1', ] + [
-            '--exclude=/{}'.format(x) for x in exclude_dirs ] +
-    ['--include={}'.format(x) for x in include_patterns] + [
+            '--exclude=/{}'.format(x) for x in exclude_dirs] +
+        ['--include={}'.format(x) for x in include_patterns] + [
         '--include=*/',
         '--exclude=/***',
         '{}@{}:/'.format(args.user, args.host),
@@ -153,7 +162,7 @@ def main():
 
     call("tar -c -C {} . | xz -9 > {}-sysroot.tar.xz".format(
         temp_dir, datetime.date.today().isoformat()),
-         shell=True)
+        shell=True)
 
 
 if __name__ == '__main__':
