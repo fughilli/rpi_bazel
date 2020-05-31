@@ -50,7 +50,8 @@ def main():
         '/usr/include/{}/c++'.format(args.target),
         '/usr/include/{}/gnu'.format(args.target),
         '/usr/include/{}/sys'.format(args.target),
-        '/usr/include/arpa'.format(args.target),
+        '/usr/include/{}/python3.5m'.format(args.target),
+        '/usr/include/arpa',
         '/usr/include/asm-generic',
         '/usr/include/c++',
         '/usr/include/linux',
@@ -65,6 +66,7 @@ def main():
         '/usr/include/sys',
         '/usr/include/GL',
         '/usr/include/glm',
+        '/usr/include/python3.5m',
         '/opt/vc/include',
         '/opt/vc/lib',
     ]
