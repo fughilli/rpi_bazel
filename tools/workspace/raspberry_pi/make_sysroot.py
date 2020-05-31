@@ -63,6 +63,8 @@ def main():
         '/usr/include/alsa',
         '/usr/include/pulse',
         '/usr/include/sys',
+        '/usr/include/GL',
+        '/usr/include/glm',
         '/opt/vc/include',
         '/opt/vc/lib',
     ]
@@ -115,6 +117,7 @@ def main():
         'libsnd*',
         'libwayland*',
         'libxkb*',
+        'libGL*',
     ]] + [
         '/usr/lib/libprojectM.so',
     ]
