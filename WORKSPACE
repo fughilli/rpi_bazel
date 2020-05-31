@@ -26,9 +26,8 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
     name = "subpar",
-    commit = "35bb9f0092f71ea56b742a520602da9b3638a24f",
-    remote = "https://github.com/google/subpar",
-    shallow_since = "1557863961 -0400",
+    commit = "15ddc75b94b19ea4f544cf5d3e640cd37a3a8b4b",
+    remote = "https://github.com/fughilli/subpar",
 )
 
 http_archive(
