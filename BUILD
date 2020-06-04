@@ -3,3 +3,8 @@
 exports_files(
     ["additional_deps.patch"],
 )
+
+config_setting(
+    name = "pi_build",
+    values = {"cpu": "armeabihf"},
+)
