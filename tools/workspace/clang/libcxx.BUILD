@@ -32,8 +32,8 @@ cc_library(
     srcs = glob([
         "src/*.cpp",
         "src/include/*.h",
-        "filesystem/*.cpp",
-        "filesystem/*.h",
+        "src/filesystem/*.cpp",
+        "src/filesystem/*.h",
     ]),
     textual_hdrs = glob([
         "src/support/runtime/**",
