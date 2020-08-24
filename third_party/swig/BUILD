@@ -300,6 +300,7 @@ genrule(
           "#define SWIG_LIB \"external/swig/Lib\"\n" +
           "#define SWIG_LIB_WIN_UNIX \"\"\n" +
           "#define SWIG_PLATFORM \"bazel4lyfe\"\n" +
+          "#undef SWIGUTL\n" +
           "EOF",
 )
 
