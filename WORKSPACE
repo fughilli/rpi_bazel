@@ -28,6 +28,7 @@ git_repository(
     name = "subpar",
     commit = "15ddc75b94b19ea4f544cf5d3e640cd37a3a8b4b",
     remote = "https://github.com/fughilli/subpar",
+    shallow_since = "1590903243 -0700",
 )
 
 http_archive(
@@ -38,11 +39,11 @@ http_archive(
 
 git_repository(
     name = "com_google_protobuf",
-    commit = "bb3460d71b2f2cd75f10efe94d739e15561c2ccf",
+    commit = "70b02861f8e8ba711efd187188dfb930db7bcaba",
     patch_args = ["-p1"],
     patches = ["@//:additional_deps.patch"],
     remote = "https://github.com/protocolbuffers/protobuf",
-    shallow_since = "1588968401 -0700",
+    shallow_since = "1598416407 -0700",
 )
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
@@ -51,8 +52,9 @@ protobuf_deps()
 
 git_repository(
     name = "com_google_absl",
-    branch = "master",
+    commit = "c03c18e7fef8d06eb6c445f5607af533e69cadfe",
     remote = "https://github.com/abseil/abseil-cpp",
+    shallow_since = "1598486385 -0400",
 )
 
 add_default_repositories()
@@ -84,4 +86,13 @@ http_archive(
         "https://storage.googleapis.com/mirror.tensorflow.org/ftp.exim.org/pub/pcre/pcre-8.42.tar.gz",
         "http://ftp.exim.org/pub/pcre/pcre-8.42.tar.gz",
     ],
+)
+
+# Eigen
+http_archive(
+    name = "eigen",
+    build_file = "//:eigen.BUILD",
+    sha256 = "3a66f9bfce85aff39bc255d5a341f87336ec6f5911e8d816dd4a3fdc500f8acf",
+    strip_prefix = "eigen-eigen-c5e90d9e764e",
+    url = "https://bitbucket.org/eigen/eigen/get/c5e90d9.tar.gz",
 )
