@@ -40,7 +40,7 @@ filegroup(
 _raspberry_pi_attrs = {
     "sysroot": attr.label(
         allow_files=True,
-        default="@rpi_bazel//tools/workspace/raspberry_pi:2020-05-09-sysroot.tar.xz"),
+        default="@rpi_bazel//tools/workspace/raspberry_pi:2020-09-21-sysroot.tar.xz"),
 }
 
 raspberry_pi_repository = repository_rule(
