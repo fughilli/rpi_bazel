@@ -52,9 +52,15 @@ protobuf_deps()
 
 git_repository(
     name = "com_google_absl",
-    commit = "c03c18e7fef8d06eb6c445f5607af533e69cadfe",
+    commit = "60d00a5822bb98f18e40b294554f91ca14fb793a",
     remote = "https://github.com/abseil/abseil-cpp",
-    shallow_since = "1598486385 -0400",
+    shallow_since = "1602701537 -0400",
+)
+
+git_repository(
+    name = "com_googletest",
+    branch = "master",
+    remote = "https://github.com/google/googletest",
 )
 
 add_default_repositories()
