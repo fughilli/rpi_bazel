@@ -21,13 +21,13 @@ filegroup(
     srcs = [
         "bin/clang",
         "bin/clang++",
-        "bin/llvm-dwp",
-        "bin/llvm-objcopy",
-        "bin/llvm-objdump",
         "bin/ld.lld",
         "bin/llvm-ar",
-        "bin/llvm-nm",
         "bin/llvm-cov",
+        "bin/llvm-dwp",
+        "bin/llvm-nm",
+        "bin/llvm-objcopy",
+        "bin/llvm-objdump",
     ],
 )
 
@@ -46,18 +46,14 @@ filegroup(
 
 filegroup(
     name = "runtime_libs",
-    srcs = [
-        "lib/libc++.so.1",
-        "lib/libc++abi.so.1",
-        "lib/libunwind.so.1",
-    ],
+    srcs = glob([
+        "lib/*.so*",
+    ]),
 )
 
 filegroup(
     name = "static_libs",
-    srcs = [
-        "lib/libc++.a",
-        "lib/libc++abi.a",
-        "lib/libunwind.a",
-    ],
+    srcs = glob([
+        "lib/*.a*",
+    ]),
 )
