@@ -36,7 +36,6 @@ cc_library(
     ]),
     copts = [
         "-Iexternal/org_llvm_libcxx/include",
-        "-D_LIBCPP_BUILDING_LIBRARY",
         "-DNDEBUG",
         "-fvisibility-inlines-hidden",
     ],
