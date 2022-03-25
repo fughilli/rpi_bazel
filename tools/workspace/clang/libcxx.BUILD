@@ -41,6 +41,7 @@ cc_library(
     copts = [
         "-Iexternal/org_llvm_libcxx/src/include",
         "-Iexternal/org_llvm_libcxx/src",
+        "-D_LIBCPP_BUILDING_LIBRARY",
         "-D_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER",
         "-DLIBCXX_BUILDING_LIBCXXABI",
         "-DLIBCXX_CXX_ABI=libstdc++",
