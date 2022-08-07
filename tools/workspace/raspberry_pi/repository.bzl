@@ -30,17 +30,34 @@ def _raspberry_pi_impl(ctx):
     ctx.file(
         "sysroot/BUILD",
         """
+package(default_visibility = ["//visibility:public"])
+
 filegroup(
     name="everything",
     srcs=glob(["**"]),
-    visibility = ["//visibility:public"],
 )
-        """)
+
+cc_library(
+name = "sdl2",
+hdrs = glob(["usr/include/SDL2/**/*.h"]),
+srcs = ["usr/lib/arm-linux-gnueabihf/libSDL2.a"],
+includes = ["usr/include/SDL2"],
+)
+
+cc_library(
+name = "gl",
+hdrs = glob(["opt/vc/include/GLES/**/*.h"]),
+srcs = ["usr/lib/arm-linux-gnueabihf/libGL.so"],
+includes = ["opt/vc/include/GLES"],
+)
+        """,
+    )
 
 _raspberry_pi_attrs = {
     "sysroot": attr.label(
-        allow_files=True,
-        default="@rpi_bazel//tools/workspace/raspberry_pi:2020-09-21-sysroot.tar.xz"),
+        allow_files = True,
+        default = "@rpi_bazel//tools/workspace/raspberry_pi:2021-03-08-sysroot.tar.xz",
+    ),
 }
 
 raspberry_pi_repository = repository_rule(
